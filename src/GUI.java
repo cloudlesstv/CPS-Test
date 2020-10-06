@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutionException;
 
 public class GUI implements ActionListener {
 
@@ -46,14 +47,17 @@ public class GUI implements ActionListener {
         if(e.getSource() == btnclick) {
             if(!sec.isRunning()) {
                 sec.start();
+                System.out.println(test.debug + "Timer Started");
             }
             cps++;
             count++;
             lblclicks.setText("Clicks: " + count);
+            System.out.println(test.debug + "Click recognized. (#" + count+ ")");
         }
         
         if(e.getSource() == sec) {
             lblcps.setText("CPS: " + cps + " C/s");
+            System.out.println(test.debug + "CPS Calculated(" + cps + ")");
             cps = 0;
         }
 
@@ -67,6 +71,7 @@ public class GUI implements ActionListener {
                 btnclick.setForeground(Color.WHITE);
                 lblclicks.setForeground(Color.WHITE);
                 lblcps.setForeground(Color.WHITE);
+                System.out.println(test.debug + "Enabled Darkmode");
             }else {
                 darkmode = false;
                 panel.setBackground(Color.WHITE);
@@ -76,6 +81,7 @@ public class GUI implements ActionListener {
                 btnclick.setForeground(Color.BLACK);
                 lblclicks.setForeground(Color.BLACK);
                 lblcps.setForeground(Color.BLACK);
+                System.out.println(test.debug + "Disabled Darkmode");
             }
         }
     }
