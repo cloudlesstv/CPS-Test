@@ -2,12 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class GUI implements ActionListener {
 
     int count;
     int cps;
+
+    public ArrayList<Integer> stats = new ArrayList<>();
+
     Boolean darkmode = new Boolean(false);
 
     JFrame frame = new JFrame();
@@ -16,6 +20,7 @@ public class GUI implements ActionListener {
     JLabel lblcps = new JLabel("CPS: " + cps + " C/s");
     JButton btnclick = new JButton("Click");
     JButton btndarkmode = new JButton("Darkmode");
+    JLabel lbllast = new JLabel("Last results: not available");
 
     Timer sec = new Timer(1000, this);
 
@@ -29,6 +34,7 @@ public class GUI implements ActionListener {
         panel.add(lblcps);
         panel.add(btnclick);
         panel.add(btndarkmode);
+        panel.add(lbllast);
 
         panel.setBackground(Color.WHITE);
         btndarkmode.setBackground(Color.WHITE);
@@ -37,6 +43,7 @@ public class GUI implements ActionListener {
         btnclick.setForeground(Color.BLACK);
         lblclicks.setForeground(Color.BLACK);
         lblcps.setForeground(Color.BLACK);
+        lbllast.setForeground(Color.BLACK);
 
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
@@ -57,8 +64,26 @@ public class GUI implements ActionListener {
         
         if(e.getSource() == sec) {
             lblcps.setText("CPS: " + cps + " C/s");
-            System.out.println(test.debug + "CPS Calculated(" + cps + ")");
-            cps = 0;
+            if(cps > 0) {
+                lblcps.setText("CPS: " + cps + " C/s");
+                System.out.println(test.debug + "CPS Calculated(" + cps + ")");
+                stats.add(cps);
+                System.out.println(test.debug + "Stats cached." + stats);
+                lbllast.setText("Last results: " + stats);
+                for (int i = 0; i < stats.size(); i++) {
+                    if(i > 3) {
+                        stats.clear();
+                        System.out.println(test.debug + "Last results cleared.");
+                        stats.add(cps);
+                        lbllast.setText("Last results: " + stats);
+                    }
+                }
+                cps = 0;
+            }else {
+                lblcps.setText("CPS: " + cps + " C/s");
+                System.out.println(test.debug + "Timer stopped.");
+                sec.stop();
+            }
         }
 
         if(e.getSource() == btndarkmode) {
@@ -71,6 +96,7 @@ public class GUI implements ActionListener {
                 btnclick.setForeground(Color.WHITE);
                 lblclicks.setForeground(Color.WHITE);
                 lblcps.setForeground(Color.WHITE);
+                lbllast.setForeground(Color.WHITE);
                 System.out.println(test.debug + "Enabled Darkmode");
             }else {
                 darkmode = false;
@@ -81,6 +107,7 @@ public class GUI implements ActionListener {
                 btnclick.setForeground(Color.BLACK);
                 lblclicks.setForeground(Color.BLACK);
                 lblcps.setForeground(Color.BLACK);
+                lbllast.setForeground(Color.BLACK);
                 System.out.println(test.debug + "Disabled Darkmode");
             }
         }
