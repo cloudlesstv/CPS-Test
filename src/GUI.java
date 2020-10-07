@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.Scanner;
 
 public class GUI implements ActionListener {
 
@@ -12,7 +12,8 @@ public class GUI implements ActionListener {
 
     public ArrayList<Integer> stats = new ArrayList<>();
 
-    Boolean darkmode = new Boolean(false);
+    Boolean booldarkmode = new Boolean(false);
+    Boolean boolDouble = new Boolean(false);
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
@@ -47,6 +48,22 @@ public class GUI implements ActionListener {
 
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String s = scanner.next();
+            if(s.equalsIgnoreCase("Clicks.double")) {
+                if(boolDouble == false) {
+                    System.out.println(test.debug + "Clicks will be doubled from now");
+                    boolDouble = true;
+                }else {
+                    System.out.println(test.debug + "Clicks will not be doubled from now");
+                    boolDouble = false;
+                }
+            }else {
+                System.out.println(test.debug + "Command not found.");
+            }
+        }
     }
 
     @Override
@@ -58,6 +75,11 @@ public class GUI implements ActionListener {
             }
             cps++;
             count++;
+            if(boolDouble == true) {
+                cps++;
+                count++;
+                System.out.println(test.debug + "Clicks doubled.");
+            }
             lblclicks.setText("Clicks: " + count);
             System.out.println(test.debug + "Click recognized. (#" + count+ ")");
         }
@@ -87,8 +109,8 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == btndarkmode) {
-            if(darkmode == false) {
-                darkmode = true;
+            if(booldarkmode == false) {
+                booldarkmode = true;
                 panel.setBackground(Color.BLACK);
                 btndarkmode.setBackground(Color.BLACK);
                 btnclick.setBackground(Color.BLACK);
@@ -99,7 +121,7 @@ public class GUI implements ActionListener {
                 lbllast.setForeground(Color.WHITE);
                 System.out.println(test.debug + "Enabled Darkmode");
             }else {
-                darkmode = false;
+                booldarkmode = false;
                 panel.setBackground(Color.WHITE);
                 btndarkmode.setBackground(Color.WHITE);
                 btnclick.setBackground(Color.WHITE);
