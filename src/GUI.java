@@ -111,9 +111,9 @@ public class GUI implements ActionListener {
         if(e.getSource() == btndarkmode) {
             if(booldarkmode == false) {
                 booldarkmode = true;
-                panel.setBackground(Color.BLACK);
-                btndarkmode.setBackground(Color.BLACK);
-                btnclick.setBackground(Color.BLACK);
+                panel.setBackground(Color.DARK_GRAY);
+                btndarkmode.setBackground(Color.DARK_GRAY);
+                btnclick.setBackground(Color.DARK_GRAY);
                 btndarkmode.setForeground(Color.GREEN);
                 btnclick.setForeground(Color.WHITE);
                 lblclicks.setForeground(Color.WHITE);
