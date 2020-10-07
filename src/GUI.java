@@ -12,16 +12,17 @@ public class GUI implements ActionListener {
 
     public ArrayList<Integer> stats = new ArrayList<>();
 
-    Boolean booldarkmode = new Boolean(false);
-    Boolean boolDouble = new Boolean(false);
+    Boolean boolDarkmode = Boolean.FALSE;
+    Boolean boolDouble = Boolean.FALSE;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel lblclicks = new JLabel("Clicks: " + count);
     JLabel lblcps = new JLabel("CPS: " + cps + " C/s");
+    JLabel lbllast = new JLabel("Last results: not available");
     JButton btnclick = new JButton("Click");
     JButton btndarkmode = new JButton("Darkmode");
-    JLabel lbllast = new JLabel("Last results: not available");
+
 
     Timer sec = new Timer(1000, this);
 
@@ -109,8 +110,8 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == btndarkmode) {
-            if(booldarkmode == false) {
-                booldarkmode = true;
+            if(boolDarkmode == false) {
+                boolDarkmode = true;
                 panel.setBackground(Color.DARK_GRAY);
                 btndarkmode.setBackground(Color.DARK_GRAY);
                 btnclick.setBackground(Color.DARK_GRAY);
@@ -121,7 +122,7 @@ public class GUI implements ActionListener {
                 lbllast.setForeground(Color.WHITE);
                 System.out.println(test.debug + "Enabled Darkmode");
             }else {
-                booldarkmode = false;
+                boolDarkmode = false;
                 panel.setBackground(Color.WHITE);
                 btndarkmode.setBackground(Color.WHITE);
                 btnclick.setBackground(Color.WHITE);
