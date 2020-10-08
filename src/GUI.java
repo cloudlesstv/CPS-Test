@@ -9,8 +9,11 @@ public class GUI implements ActionListener {
 
     int count;
     int cps;
-
+    int max;
+    
     public ArrayList<Integer> stats = new ArrayList<>();
+    
+    public ArrayList<Integer> statsAll = new ArrayList<>();
 
     Boolean boolDarkmode = Boolean.FALSE;
     Boolean boolDouble = Boolean.FALSE;
@@ -22,7 +25,6 @@ public class GUI implements ActionListener {
     JLabel lbllast = new JLabel("Last results: not available");
     JButton btnclick = new JButton("Click");
     JButton btndarkmode = new JButton("Darkmode");
-
 
     Timer sec = new Timer(1000, this);
 
@@ -46,7 +48,6 @@ public class GUI implements ActionListener {
         lblclicks.setForeground(Color.BLACK);
         lblcps.setForeground(Color.BLACK);
         lbllast.setForeground(Color.BLACK);
-
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
 
@@ -85,12 +86,13 @@ public class GUI implements ActionListener {
             System.out.println(test.debug + "Click recognized. (#" + count+ ")");
         }
         
-        if(e.getSource() == sec) {
+        else if(e.getSource() == sec) {
             lblcps.setText("CPS: " + cps + " C/s");
             if(cps > 0) {
                 lblcps.setText("CPS: " + cps + " C/s");
                 System.out.println(test.debug + "CPS Calculated(" + cps + ")");
                 stats.add(cps);
+                statsAll.add(cps);
                 System.out.println(test.debug + "Stats cached." + stats);
                 lbllast.setText("Last results: " + stats);
                 for (int i = 0; i < stats.size(); i++) {
@@ -100,16 +102,21 @@ public class GUI implements ActionListener {
                         stats.add(cps);
                         lbllast.setText("Last results: " + stats);
                     }
+                    if(cps < statsAll.get(i)) {
+                    	max = statsAll.get(i);
+                    }
                 }
                 cps = 0;
             }else {
                 lblcps.setText("CPS: " + cps + " C/s");
+                System.out.println(test.debug + statsAll);
                 System.out.println(test.debug + "Timer stopped.");
                 sec.stop();
+                
             }
         }
 
-        if(e.getSource() == btndarkmode) {
+        else if(e.getSource() == btndarkmode) {
             if(boolDarkmode == false) {
                 boolDarkmode = true;
                 panel.setBackground(Color.DARK_GRAY);
