@@ -1,19 +1,17 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class GUI implements ActionListener {
 
     int count;
     int cps;
-    int max;
-    
-    public ArrayList<Integer> stats = new ArrayList<>();
-    
-    public ArrayList<Integer> statsAll = new ArrayList<>();
+    int hcps;
+
+    public ArrayList<Integer> stats = new ArrayList<Integer>();
 
     Boolean boolDarkmode = Boolean.FALSE;
     Boolean boolDouble = Boolean.FALSE;
@@ -22,9 +20,11 @@ public class GUI implements ActionListener {
     JPanel panel = new JPanel();
     JLabel lblclicks = new JLabel("Clicks: " + count);
     JLabel lblcps = new JLabel("CPS: " + cps + " C/s");
-    JLabel lbllast = new JLabel("Last results: not available");
+    JLabel lbllast = new JLabel("Last results: N/A");
+    JLabel lblHS = new JLabel("Highscore: N/A");
     JButton btnclick = new JButton("Click");
     JButton btndarkmode = new JButton("Darkmode");
+
 
     Timer sec = new Timer(1000, this);
 
@@ -39,6 +39,7 @@ public class GUI implements ActionListener {
         panel.add(btnclick);
         panel.add(btndarkmode);
         panel.add(lbllast);
+        panel.add(lblHS);
 
         panel.setBackground(Color.WHITE);
         btndarkmode.setBackground(Color.WHITE);
@@ -48,6 +49,7 @@ public class GUI implements ActionListener {
         lblclicks.setForeground(Color.BLACK);
         lblcps.setForeground(Color.BLACK);
         lbllast.setForeground(Color.BLACK);
+
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
 
@@ -86,13 +88,13 @@ public class GUI implements ActionListener {
             System.out.println(test.debug + "Click recognized. (#" + count+ ")");
         }
         
-        else if(e.getSource() == sec) {
+        if(e.getSource() == sec) {
             lblcps.setText("CPS: " + cps + " C/s");
             if(cps > 0) {
                 lblcps.setText("CPS: " + cps + " C/s");
                 System.out.println(test.debug + "CPS Calculated(" + cps + ")");
                 stats.add(cps);
-                statsAll.add(cps);
+
                 System.out.println(test.debug + "Stats cached." + stats);
                 lbllast.setText("Last results: " + stats);
                 for (int i = 0; i < stats.size(); i++) {
@@ -102,21 +104,21 @@ public class GUI implements ActionListener {
                         stats.add(cps);
                         lbllast.setText("Last results: " + stats);
                     }
-                    if(cps < statsAll.get(i)) {
-                    	max = statsAll.get(i);
-                    }
+                }
+                if (cps > hcps) {
+                    System.out.println(test.debug + "New Highscore:" + cps);
+                    hcps = cps;
+                    lblHS.setText("Highscore: " + hcps);
                 }
                 cps = 0;
             }else {
                 lblcps.setText("CPS: " + cps + " C/s");
-                System.out.println(test.debug + statsAll);
                 System.out.println(test.debug + "Timer stopped.");
                 sec.stop();
-                
             }
         }
 
-        else if(e.getSource() == btndarkmode) {
+        if(e.getSource() == btndarkmode) {
             if(boolDarkmode == false) {
                 boolDarkmode = true;
                 panel.setBackground(Color.DARK_GRAY);
