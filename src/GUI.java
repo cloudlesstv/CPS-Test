@@ -49,6 +49,7 @@ public class GUI implements ActionListener {
         lblclicks.setForeground(Color.BLACK);
         lblcps.setForeground(Color.BLACK);
         lbllast.setForeground(Color.BLACK);
+        lblHS.setForeground(Color.BLACK);
 
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
@@ -129,6 +130,7 @@ public class GUI implements ActionListener {
                 lblclicks.setForeground(Color.WHITE);
                 lblcps.setForeground(Color.WHITE);
                 lbllast.setForeground(Color.WHITE);
+                lblHS.setForeground(Color.WHITE);
                 System.out.println(test.debug + "Enabled Darkmode");
             }else {
                 boolDarkmode = false;
@@ -140,6 +142,7 @@ public class GUI implements ActionListener {
                 lblclicks.setForeground(Color.BLACK);
                 lblcps.setForeground(Color.BLACK);
                 lbllast.setForeground(Color.BLACK);
+                lblHS.setForeground(Color.BLACK);
                 System.out.println(test.debug + "Disabled Darkmode");
             }
         }
