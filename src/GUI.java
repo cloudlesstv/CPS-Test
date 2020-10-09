@@ -1,17 +1,17 @@
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.*;
 
-import static java.awt.Font.ITALIC;
 
 public class GUI implements ActionListener {
 
     int count;
     int cps;
     int hcps;
+
+    Desktop desktop = Desktop.getDesktop();
 
     public ArrayList<Integer> stats = new ArrayList<Integer>();
 
@@ -33,10 +33,14 @@ public class GUI implements ActionListener {
 
     public GUI() {
         frame.setVisible(true);
-        frame.setSize(180, 200);
+        frame.setSize(720, 280);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.add(panel);
+
+        panel.setBorder(BorderFactory.createEmptyBorder(30 , 30, 30, 30));
+        panel.setLayout(new GridLayout(0, 1));
+
+        frame.add(panel, BorderLayout.CENTER);
         panel.add(lblclicks);
         panel.add(lblcps);
         panel.add(btnclick);
@@ -83,6 +87,7 @@ public class GUI implements ActionListener {
                 lbllast.setText("Last results: N/A");
 
                 System.out.println(test.debug + "History cleared.");
+
             }else {
                 System.out.println(test.debug + "Command not found.");
             }
