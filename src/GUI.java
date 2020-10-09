@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import static java.awt.Font.ITALIC;
+
 public class GUI implements ActionListener {
 
     int count;
@@ -16,6 +18,7 @@ public class GUI implements ActionListener {
     Boolean boolDarkmode = Boolean.FALSE;
     Boolean boolDouble = Boolean.FALSE;
 
+    JPopupMenu menu = new JPopupMenu();
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel lblclicks = new JLabel("Clicks: " + count);
@@ -65,6 +68,21 @@ public class GUI implements ActionListener {
                     System.out.println(test.debug + "Clicks will not be doubled from now");
                     boolDouble = false;
                 }
+            }else if(s.equalsIgnoreCase("Clicks.reset")) {
+                cps = 0;
+                hcps = 0;
+                count = 0;
+
+                lblclicks.setText("Clicks: " + count);
+                lblHS.setText("Highscore: N/A");
+
+                System.out.println(test.debug + "Stats resetted.");
+            }else if(s.equalsIgnoreCase("Clicks.clearlast")) {
+                stats.clear();
+
+                lbllast.setText("Last results: N/A");
+
+                System.out.println(test.debug + "History cleared.");
             }else {
                 System.out.println(test.debug + "Command not found.");
             }
