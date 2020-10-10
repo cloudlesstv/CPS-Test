@@ -25,11 +25,11 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("CPS-Test by CloudLessTv");
 
-
         panel.setBorder(BorderFactory.createEmptyBorder(30 , 30, 30, 30));
         panel.setLayout(new GridLayout(3, 0));
 
         frame.add(panel, BorderLayout.CENTER);
+
         panel.add(lblclicks);
         panel.add(lblcps);
         panel.add(btnclick);
@@ -38,10 +38,10 @@ public class GUI {
         panel.add(lblHS);
 
         panel.setBackground(colorPalette.Gainsboro);
-        btndarkmode.setBackground(Color.WHITE);
-        btnclick.setBackground(Color.WHITE);
-        btndarkmode.setForeground(Color.RED);
-        btnclick.setForeground(Color.BLACK);
+        btndarkmode.setBackground(colorPalette.Light_Cyan);
+        btnclick.setBackground(colorPalette.Light_Cyan);
+        btndarkmode.setForeground(colorPalette.Imperial_Red);
+        btnclick.setForeground(colorPalette.Rich_Black_FOGRA_39);
         lblclicks.setForeground(colorPalette.Charcoal);
         lblcps.setForeground(colorPalette.Charcoal);
         lbllast.setForeground(colorPalette.Charcoal);
