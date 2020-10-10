@@ -21,5 +21,7 @@ public class test {
         System.out.println("Debug started");
         System.out.println("");
         new GUI();
+        new colorPalette();
+        new ActionEventHandler();
     }
 }
