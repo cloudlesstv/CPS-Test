@@ -58,8 +58,8 @@ public class ActionEventHandler implements ActionListener {
                 GUI.panel.setBackground(colorPalette.Gunmetal);
                 GUI.btndarkmode.setBackground(colorPalette.Bdazzled_Blue);
                 GUI.btnclick.setBackground(colorPalette.Bdazzled_Blue);
-                GUI.btndarkmode.setForeground(Color.GREEN);
-                GUI.btnclick.setForeground(Color.WHITE);
+                GUI.btndarkmode.setForeground(colorPalette.Android_Green);
+                GUI.btnclick.setForeground(colorPalette.Cultured);
                 GUI.lblclicks.setForeground(colorPalette.Pale_Cerulean);
                 GUI.lblcps.setForeground(colorPalette.Pale_Cerulean);
                 GUI.lbllast.setForeground(colorPalette.Pale_Cerulean);
@@ -68,10 +68,10 @@ public class ActionEventHandler implements ActionListener {
             }else {
                 GUI.boolDarkmode = false;
                 GUI.panel.setBackground(colorPalette.Gainsboro);
-                GUI.btndarkmode.setBackground(Color.WHITE);
-                GUI.btnclick.setBackground(Color.WHITE);
-                GUI.btndarkmode.setForeground(Color.RED);
-                GUI.btnclick.setForeground(Color.BLACK);
+                GUI.btndarkmode.setBackground(colorPalette.Light_Cyan);
+                GUI.btnclick.setBackground(colorPalette.Light_Cyan);
+                GUI.btndarkmode.setForeground(colorPalette.Imperial_Red);
+                GUI.btnclick.setForeground(colorPalette.Rich_Black_FOGRA_39);
                 GUI.lblclicks.setForeground(colorPalette.Charcoal);
                 GUI.lblcps.setForeground(colorPalette.Charcoal);
                 GUI.lbllast.setForeground(colorPalette.Charcoal);
