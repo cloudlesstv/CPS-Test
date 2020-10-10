@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -11,22 +12,21 @@ public class GUI implements ActionListener {
     int cps;
     int hcps;
 
-    Desktop desktop = Desktop.getDesktop();
-
     public ArrayList<Integer> stats = new ArrayList<Integer>();
 
     Boolean boolDarkmode = Boolean.FALSE;
     Boolean boolDouble = Boolean.FALSE;
 
-    JPopupMenu menu = new JPopupMenu();
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
-    JLabel lblclicks = new JLabel("Clicks: " + count);
-    JLabel lblcps = new JLabel("CPS: " + cps + " C/s");
+    JLabel lblclicks = new JLabel("Clicks: " + count, JLabel.LEFT);
+    JLabel lblcps = new JLabel("CPS: " + cps + " C/s", JLabel.RIGHT);
     JLabel lbllast = new JLabel("Last results: N/A");
-    JLabel lblHS = new JLabel("Highscore: N/A");
+    JLabel lblHS = new JLabel("Highscore: N/A", JLabel.RIGHT);
     JButton btnclick = new JButton("Click");
     JButton btndarkmode = new JButton("Darkmode");
+    Font defaultFont = new Font("Comic Sans MS", Font.BOLD, 28);
+    Font buttonFont = new Font("Default", Font.BOLD, 20);
 
 
     Timer sec = new Timer(1000, this);
@@ -35,10 +35,11 @@ public class GUI implements ActionListener {
         frame.setVisible(true);
         frame.setSize(720, 280);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("CPS-Test by CloudLessTv");
 
 
         panel.setBorder(BorderFactory.createEmptyBorder(30 , 30, 30, 30));
-        panel.setLayout(new GridLayout(0, 1));
+        panel.setLayout(new GridLayout(3, 0));
 
         frame.add(panel, BorderLayout.CENTER);
         panel.add(lblclicks);
@@ -57,6 +58,13 @@ public class GUI implements ActionListener {
         lblcps.setForeground(Color.BLACK);
         lbllast.setForeground(Color.BLACK);
         lblHS.setForeground(Color.BLACK);
+
+        btnclick.setFont(buttonFont);
+        btndarkmode.setFont(buttonFont);
+        lblcps.setFont(defaultFont);
+        lblclicks.setFont(defaultFont);
+        lbllast.setFont(defaultFont);
+        lblHS.setFont(defaultFont);
 
         btnclick.addActionListener(this);
         btndarkmode.addActionListener(this);
@@ -94,6 +102,7 @@ public class GUI implements ActionListener {
         }
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnclick) {
@@ -110,6 +119,7 @@ public class GUI implements ActionListener {
             }
             lblclicks.setText("Clicks: " + count);
             System.out.println(test.debug + "Click recognized. (#" + count+ ")");
+
         }
         
         if(e.getSource() == sec) {
