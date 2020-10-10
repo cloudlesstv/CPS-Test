@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -28,12 +27,18 @@ public class GUI implements ActionListener {
     Font defaultFont = new Font("Comic Sans MS", Font.BOLD, 28);
     Font buttonFont = new Font("Default", Font.BOLD, 20);
 
+    Color Gunmetal = new Color(41, 50, 65);
+    Color Bdazzled_Blue = new Color(61, 90, 128);
+    Color Pale_Cerulean = new Color(152, 193, 217);
+    Color Gainsboro = new Color(216, 219, 226);
+    Color Charcoal = new Color(55, 63, 81);
 
     Timer sec = new Timer(1000, this);
 
     public GUI() {
         frame.setVisible(true);
-        frame.setSize(720, 280);
+        frame.setSize(960, 480);
+        frame.setMinimumSize(new Dimension(960, 480));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("CPS-Test by CloudLessTv");
 
@@ -49,15 +54,15 @@ public class GUI implements ActionListener {
         panel.add(lbllast);
         panel.add(lblHS);
 
-        panel.setBackground(Color.WHITE);
+        panel.setBackground(Gainsboro);
         btndarkmode.setBackground(Color.WHITE);
         btnclick.setBackground(Color.WHITE);
         btndarkmode.setForeground(Color.RED);
         btnclick.setForeground(Color.BLACK);
-        lblclicks.setForeground(Color.BLACK);
-        lblcps.setForeground(Color.BLACK);
-        lbllast.setForeground(Color.BLACK);
-        lblHS.setForeground(Color.BLACK);
+        lblclicks.setForeground(Charcoal);
+        lblcps.setForeground(Charcoal);
+        lbllast.setForeground(Charcoal);
+        lblHS.setForeground(Charcoal);
 
         btnclick.setFont(buttonFont);
         btndarkmode.setFont(buttonFont);
@@ -155,27 +160,27 @@ public class GUI implements ActionListener {
         if(e.getSource() == btndarkmode) {
             if(boolDarkmode == false) {
                 boolDarkmode = true;
-                panel.setBackground(Color.DARK_GRAY);
-                btndarkmode.setBackground(Color.DARK_GRAY);
-                btnclick.setBackground(Color.DARK_GRAY);
+                panel.setBackground(Gunmetal);
+                btndarkmode.setBackground(Bdazzled_Blue);
+                btnclick.setBackground(Bdazzled_Blue);
                 btndarkmode.setForeground(Color.GREEN);
                 btnclick.setForeground(Color.WHITE);
-                lblclicks.setForeground(Color.WHITE);
-                lblcps.setForeground(Color.WHITE);
-                lbllast.setForeground(Color.WHITE);
-                lblHS.setForeground(Color.WHITE);
+                lblclicks.setForeground(Pale_Cerulean);
+                lblcps.setForeground(Pale_Cerulean);
+                lbllast.setForeground(Pale_Cerulean);
+                lblHS.setForeground(Pale_Cerulean);
                 System.out.println(test.debug + "Enabled Darkmode");
             }else {
                 boolDarkmode = false;
-                panel.setBackground(Color.WHITE);
+                panel.setBackground(Gainsboro);
                 btndarkmode.setBackground(Color.WHITE);
                 btnclick.setBackground(Color.WHITE);
                 btndarkmode.setForeground(Color.RED);
                 btnclick.setForeground(Color.BLACK);
-                lblclicks.setForeground(Color.BLACK);
-                lblcps.setForeground(Color.BLACK);
-                lbllast.setForeground(Color.BLACK);
-                lblHS.setForeground(Color.BLACK);
+                lblclicks.setForeground(Charcoal);
+                lblcps.setForeground(Charcoal);
+                lbllast.setForeground(Charcoal);
+                lblHS.setForeground(Charcoal);
                 System.out.println(test.debug + "Disabled Darkmode");
             }
         }
