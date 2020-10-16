@@ -1,83 +1,125 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class ActionEventHandler implements ActionListener {
+public class ActionEventHandler implements ActionListener, KeyListener, MouseListener {
+
+    Boolean boolSpace = new Boolean(Boolean.FALSE);
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == GUI.btnclick) {
-            if(!test.sec.isRunning()) {
-                test.sec.start();
-                System.out.println(test.debug + "Timer Started");
+            if(!Main.sec.isRunning()) {
+                Main.sec.start();
+                System.out.println(Main.debug + "Timer Started");
             }
-            test.cps++;
-            test.count++;
-            if(test.boolDouble == true) {
-                test.cps++;
-                test.count++;
-                System.out.println(test.debug + "Clicks doubled.");
+            Main.cps++;
+            Main.count++;
+            if(Main.boolDouble == true) {
+                Main.cps++;
+                Main.count++;
+                System.out.println(Main.debug + "Clicks doubled.");
             }
-            GUI.lblclicks.setText("Clicks: " + test.count);
-            System.out.println(test.debug + "Click recognized. (#" + test.count+ ")");
-
+            GUI.lblclicks.setText("Clicks: " + Main.count);
+            System.out.println(Main.debug + "Click recognized. (#" + Main.count+ ")");
         }
 
-        if(e.getSource() == test.sec) {
-            GUI.lblcps.setText("CPS: " + test.cps + " C/s");
-            if(test.cps > 0) {
-                GUI.lblcps.setText("CPS: " + test.cps + " C/s");
-                System.out.println(test.debug + "CPS Calculated(" + test.cps + ")");
-                test.stats.add(test.cps);
+        if(e.getSource() == Main.sec) {
+            GUI.lblcps.setText("CPS: " + Main.cps + " C/s");
+            if(Main.cps > 0) {
+                GUI.lblcps.setText("CPS: " + Main.cps + " C/s");
+                System.out.println(Main.debug + "CPS Calculated(" + Main.cps + ")");
+                Main.stats.add(Main.cps);
 
-                System.out.println(test.debug + "Stats cached." + test.stats);
-                GUI.lbllast.setText("Last results: " + test.stats);
-                for (int i = 0; i < test.stats.size(); i++) {
+                System.out.println(Main.debug + "Stats cached." + Main.stats);
+                GUI.lbllast.setText("Last results: " + Main.stats);
+                for (int i = 0; i < Main.stats.size(); i++) {
                     if(i > 3) {
-                        test.stats.clear();
-                        System.out.println(test.debug + "Last results cleared.");
-                        test.stats.add(test.cps);
-                        GUI.lbllast.setText("Last results: " + test.stats);
+                        Main.stats.clear();
+                        System.out.println(Main.debug + "Last results cleared.");
+                        Main.stats.add(Main.cps);
+                        GUI.lbllast.setText("Last results: " + Main.stats);
                     }
                 }
-                if (test.cps > test.hcps) {
-                    System.out.println(test.debug + "New Highscore:" + test.cps);
-                    test.hcps = test.cps;
-                    GUI.lblHS.setText("Highscore: " + test.hcps);
+                if (Main.cps > Main.hcps) {
+                    System.out.println(Main.debug + "New Highscore:" + Main.cps);
+                    Main.hcps = Main.cps;
+                    GUI.lblHS.setText("Highscore: " + Main.hcps);
                 }
-                test.cps = 0;
+                Main.cps = 0;
             }else {
-                GUI.lblcps.setText("CPS: " + test.cps + " C/s");
-                System.out.println(test.debug + "Timer stopped.");
-                test.sec.stop();
+                GUI.lblcps.setText("CPS: " + Main.cps + " C/s");
+                System.out.println(Main.debug + "Timer stopped.");
+                Main.sec.stop();
             }
         }
 
         if(e.getSource() == GUI.btndarkmode) {
             if(GUI.boolDarkmode == false) {
                 GUI.boolDarkmode = true;
-                GUI.panel.setBackground(colorPalette.Gunmetal);
-                GUI.btndarkmode.setBackground(colorPalette.Bdazzled_Blue);
-                GUI.btnclick.setBackground(colorPalette.Bdazzled_Blue);
-                GUI.btndarkmode.setForeground(Color.GREEN);
-                GUI.btnclick.setForeground(Color.WHITE);
-                GUI.lblclicks.setForeground(colorPalette.Pale_Cerulean);
-                GUI.lblcps.setForeground(colorPalette.Pale_Cerulean);
-                GUI.lbllast.setForeground(colorPalette.Pale_Cerulean);
-                GUI.lblHS.setForeground(colorPalette.Pale_Cerulean);
-                System.out.println(test.debug + "Enabled Darkmode");
+                GUI.panel.setBackground(Colors.Gunmetal);
+                GUI.btndarkmode.setBackground(Colors.Bdazzled_Blue);
+                GUI.btnclick.setBackground(Colors.Bdazzled_Blue);
+                GUI.btndarkmode.setForeground(Colors.Android_Green);
+                GUI.btnclick.setForeground(Colors.Cultured);
+                GUI.lblclicks.setForeground(Colors.Pale_Cerulean);
+                GUI.lblcps.setForeground(Colors.Pale_Cerulean);
+                GUI.lbllast.setForeground(Colors.Pale_Cerulean);
+                GUI.lblHS.setForeground(Colors.Pale_Cerulean);
+                System.out.println(Main.debug + "Enabled Darkmode");
             }else {
                 GUI.boolDarkmode = false;
-                GUI.panel.setBackground(colorPalette.Gainsboro);
-                GUI.btndarkmode.setBackground(Color.WHITE);
-                GUI.btnclick.setBackground(Color.WHITE);
-                GUI.btndarkmode.setForeground(Color.RED);
-                GUI.btnclick.setForeground(Color.BLACK);
-                GUI.lblclicks.setForeground(colorPalette.Charcoal);
-                GUI.lblcps.setForeground(colorPalette.Charcoal);
-                GUI.lbllast.setForeground(colorPalette.Charcoal);
-                GUI.lblHS.setForeground(colorPalette.Charcoal);
-                System.out.println(test.debug + "Disabled Darkmode");
+                GUI.panel.setBackground(Colors.Gainsboro);
+                GUI.btndarkmode.setBackground(Colors.Light_Cyan);
+                GUI.btnclick.setBackground(Colors.Light_Cyan);
+                GUI.btndarkmode.setForeground(Colors.Imperial_Red);
+                GUI.btnclick.setForeground(Colors.Rich_Black_FOGRA_39);
+                GUI.lblclicks.setForeground(Colors.Charcoal);
+                GUI.lblcps.setForeground(Colors.Charcoal);
+                GUI.lbllast.setForeground(Colors.Charcoal);
+                GUI.lblHS.setForeground(Colors.Charcoal);
+                System.out.println(Main.debug + "Disabled Darkmode");
             }
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

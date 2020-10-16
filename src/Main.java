@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class test {
+public class Main {
 
     static int count;
     static int cps;
@@ -22,5 +21,7 @@ public class test {
         System.out.println("Debug started");
         System.out.println("");
         new GUI();
+        new Colors();
+        new ActionEventHandler();
     }
 }
