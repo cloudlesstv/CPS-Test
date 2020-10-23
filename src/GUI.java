@@ -8,7 +8,6 @@ public class GUI {
     static Boolean boolDarkmode = Boolean.FALSE;
 
     static JFrame frame = new JFrame();
-    static JPanel panel = new JPanel();
     static JLabel lblclicks = new JLabel("Clicks: " + Main.count, JLabel.LEFT);
     static JLabel lblcps = new JLabel("CPS: " + Main.cps + " C/s", JLabel.RIGHT);
     static JLabel lbllast = new JLabel("Last results: N/A");
@@ -17,8 +16,14 @@ public class GUI {
     static JButton btndarkmode = new JButton("Darkmode");
     static Font defaultFont = new Font("Comic Sans MS", Font.BOLD, 28);
     static Font buttonFont = new Font("Default", Font.BOLD, 20);
+    static JPanel contentPanel = new JPanel(new FlowLayout());
+
+
+    //Login
+    static JButton btnlogin = new JButton("Login");
 
     public GUI() {
+        frame.setContentPane(contentPanel);
         frame.setVisible(true);
         frame.setSize(960, 480);
         frame.setMinimumSize(new Dimension(960, 480));
@@ -26,19 +31,21 @@ public class GUI {
         frame.setTitle("CPS-Test by CloudLessTv");
         frame.addKeyListener(new ActionEventHandler());
 
-        panel.setBorder(BorderFactory.createEmptyBorder(30 , 30, 30, 30));
-        panel.setLayout(new GridLayout(3, 0));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(30 , 30, 30, 30));
+        contentPanel.setLayout(new GridLayout(0, 2));
+        contentPanel.setBounds(5, 5, 5, 5);
 
-        frame.add(panel, BorderLayout.CENTER);
+        contentPanel.add(lblclicks);
+        contentPanel.add(lblcps);
+        contentPanel.add(btnclick);
+        contentPanel.add(btndarkmode);
+        contentPanel.add(lbllast);
+        contentPanel.add(lblHS);
 
-        panel.add(lblclicks);
-        panel.add(lblcps);
-        panel.add(btnclick);
-        panel.add(btndarkmode);
-        panel.add(lbllast);
-        panel.add(lblHS);
+        //Login
+        contentPanel.add(btnlogin);
 
-        panel.setBackground(Colors.Gainsboro);
+        contentPanel.setBackground(Colors.Gainsboro);
         btndarkmode.setBackground(Colors.Light_Cyan);
         btnclick.setBackground(Colors.Light_Cyan);
         btndarkmode.setForeground(Colors.Imperial_Red);
@@ -47,6 +54,14 @@ public class GUI {
         lblcps.setForeground(Colors.Charcoal);
         lbllast.setForeground(Colors.Charcoal);
         lblHS.setForeground(Colors.Charcoal);
+
+        //Login
+        btnlogin.setBackground(Colors.Light_Cyan);
+        btnlogin.setForeground(Colors.Rich_Black_FOGRA_39);
+        btnlogin.setFont(buttonFont);
+        btnlogin.addActionListener(new ActionEventHandler());
+
+
 
         btnclick.setFont(buttonFont);
         btndarkmode.setFont(buttonFont);

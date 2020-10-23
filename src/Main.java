@@ -23,5 +23,6 @@ public class Main {
         new GUI();
         new Colors();
         new ActionEventHandler();
+        new LoginForm();
     }
 }

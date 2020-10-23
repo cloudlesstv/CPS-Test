@@ -55,7 +55,7 @@ public class ActionEventHandler implements ActionListener, KeyListener, MouseLis
         if(e.getSource() == GUI.btndarkmode) {
             if(GUI.boolDarkmode == false) {
                 GUI.boolDarkmode = true;
-                GUI.panel.setBackground(Colors.Gunmetal);
+                GUI.contentPanel.setBackground(Colors.Gunmetal);
                 GUI.btndarkmode.setBackground(Colors.Bdazzled_Blue);
                 GUI.btnclick.setBackground(Colors.Bdazzled_Blue);
                 GUI.btndarkmode.setForeground(Colors.Android_Green);
@@ -64,10 +64,15 @@ public class ActionEventHandler implements ActionListener, KeyListener, MouseLis
                 GUI.lblcps.setForeground(Colors.Pale_Cerulean);
                 GUI.lbllast.setForeground(Colors.Pale_Cerulean);
                 GUI.lblHS.setForeground(Colors.Pale_Cerulean);
+
+                //Login
+                GUI.btnlogin.setBackground(Colors.Bdazzled_Blue);
+                GUI.btnlogin.setForeground(Colors.Cultured);
+                //Login
                 System.out.println(Main.debug + "Enabled Darkmode");
             }else {
                 GUI.boolDarkmode = false;
-                GUI.panel.setBackground(Colors.Gainsboro);
+                GUI.contentPanel.setBackground(Colors.Gainsboro);
                 GUI.btndarkmode.setBackground(Colors.Light_Cyan);
                 GUI.btnclick.setBackground(Colors.Light_Cyan);
                 GUI.btndarkmode.setForeground(Colors.Imperial_Red);
@@ -76,8 +81,15 @@ public class ActionEventHandler implements ActionListener, KeyListener, MouseLis
                 GUI.lblcps.setForeground(Colors.Charcoal);
                 GUI.lbllast.setForeground(Colors.Charcoal);
                 GUI.lblHS.setForeground(Colors.Charcoal);
+                //Login
+                GUI.btnlogin.setBackground(Colors.Light_Cyan);
+                GUI.btnlogin.setForeground(Colors.Rich_Black_FOGRA_39);
+                //Login
                 System.out.println(Main.debug + "Disabled Darkmode");
             }
+        }
+        if(e.getSource() == GUI.btnlogin) {
+            LoginForm.GUI();
         }
     }
 
