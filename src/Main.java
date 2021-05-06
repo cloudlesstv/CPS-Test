@@ -1,3 +1,5 @@
+
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -11,18 +13,19 @@ public class Main {
 
     static Boolean boolDouble = Boolean.FALSE;
 
-    static String debug = new String("[Debug]");
+    static String debug = "[Debug]";
 
     static Timer sec = new Timer(1000, new ActionEventHandler());
 
     public static void main(String[] args) {
         System.out.println("");
         System.out.println("Welcome to CPS-Test by CloudLessTv");
-        System.out.println("Debug started");
+        Debug.printStacktrace("Debug started.");
         System.out.println("");
+        RPC.start();
+        RPC.update();
+        DatabaseHandler.setConnection();
         new GUI();
         new Colors();
-        new ActionEventHandler();
-        new LoginForm();
     }
 }
