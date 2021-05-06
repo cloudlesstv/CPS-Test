@@ -20,7 +20,6 @@ public class GUI {
 
 
     public GUI() {
-
         frame.addMouseListener(new ActionEventHandler());
         frame.setContentPane(contentPanel);
         frame.setVisible(true);
