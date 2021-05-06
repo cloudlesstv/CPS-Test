@@ -2,6 +2,7 @@ import java.sql.*;
 
 public class DatabaseHandler {
 
+    
     static String cloudkey_logged =  "";
 
     static Connection connection = null;
